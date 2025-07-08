@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE suite SYSTEM "https://testng.org/testng-1.0.dtd">
+<suite name="Suite">
+	<test parallel="methods"  thread-count="6" name="Test">
+		<classes>
+			<class name="in.reqres.ReqResUserServiceTestCases">
+				<methods>
+					<include name="getAllUsers" />
+					<include name="postUser" />
+					<include name="getSingleUser" />
+					<include name="putUser" />
+					<include name="patchUser" />
+					<include name="deleteUser" />
+				</methods>
+			</class>
+		</classes>
+	</test> <!--
+	Test -->
+</suite> <!--
+Suite -->
