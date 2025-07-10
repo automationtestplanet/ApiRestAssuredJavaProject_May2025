@@ -1,4 +1,4 @@
-package reqres.in;
+package api;
 
 import java.util.Map;
 import io.restassured.RestAssured;
@@ -21,14 +21,14 @@ public class ApiRequests {
 				.extract().response();
 	}
 
-	public Response postWithHeaders(String endPoint, Map<String, String> headers, String requestBody) {
+	public Response postWithHeaders(String endPoint, Map<String, String> headers, Object requestBody) {
 		return RestAssured.given().headers(headers).contentType(ContentType.JSON).body(requestBody).when()
 				.post(endPoint).then().extract().response();
 
 	}
 
 	public Response putWithPathParametersAndHeaders(String endPoint, Map<String, String> pathParams,
-			Map<String, String> headers, String requestBody) {
+			Map<String, String> headers, Object requestBody) {
 
 		String pathParameter = "";
 		for (String pathParam : pathParams.keySet()) {

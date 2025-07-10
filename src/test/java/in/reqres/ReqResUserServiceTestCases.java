@@ -20,9 +20,6 @@ public class ReqResUserServiceTestCases {
 		Assert.assertEquals(response.getStatusCode(), 200);		
 		Assert.assertNotNull(response.body().asString());		
 		Assert.assertTrue(response.jsonPath().get("page").toString().contains("2"));
-		
-//		System.out.println(response.getStatusCode());		
-//		response.body().prettyPrint();
 	}
 	
 	@Test

@@ -1,17 +1,14 @@
-package reqres.in;
+package services;
 
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-import org.json.simple.JSONObject;
-import org.json.simple.parser.JSONParser;
-
-import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import models.NewUserData;
 import models.PartialUpdateUserData;
 import models.SingleUserData;
 import models.UpdatedUserData;
+import api.ApiRequests;
 
 public class UserService extends ApiRequests {
 
@@ -28,32 +25,12 @@ public class UserService extends ApiRequests {
 	}
 
 	public SingleUserData getSingleUserDetails(Map<String, String> pathParameters, int expectedStatusCode) {
-
 		try {
-			
 			ObjectMapper objMap = new ObjectMapper();
-			
-//			String responseString = getWithPathParams(USER_SERVICE, pathParameters).then()
-//			.statusCode(expectedStatusCode).and().extract().jsonPath().get("data").toString();
-//			return objMap.readValue(responseString, SingleUserData.class);
-			
-			
 			LinkedHashMap<String, String> responseObject = getWithPathParams(USER_SERVICE, pathParameters).then()
 					.statusCode(expectedStatusCode).and().extract().jsonPath().getJsonObject("data");
-			
 			String responseString = objMap.writeValueAsString(responseObject);
-			System.out.println(responseString);
-			
-			
 			return objMap.readValue(responseString, SingleUserData.class);
-			
-//			LinkedHashMap<String, String> responseString = getWithPathParams(USER_SERVICE, pathParameters).then()
-//					.statusCode(expectedStatusCode).and().extract().jsonPath().getJsonObject("data");
-//			
-//			ObjectMapper objMap = new ObjectMapper();
-//			String str = objMap.writeValueAsString(responseString);
-//			return objMap.readValue(objMap.writeValueAsString(responseString), SingleUserData.class);
-			
 		} catch (Exception e) {
 			System.out.println("Exception occured while getting Single user: " + e.getMessage());
 			return null;
@@ -61,7 +38,7 @@ public class UserService extends ApiRequests {
 
 	}
 
-	public NewUserData addUserDetails(Map<String, String> headers, String requestBody, int statusCode) {
+	public NewUserData addUserDetails(Map<String, String> headers, Object requestBody, int statusCode) {
 		try {
 			return postWithHeaders(USER_SERVICE, headers, requestBody).then().statusCode(statusCode).and().extract()
 					.as(NewUserData.class);
@@ -73,7 +50,7 @@ public class UserService extends ApiRequests {
 	}
 
 	public UpdatedUserData updateUserDetails(Map<String, String> pathParameters, Map<String, String> headers,
-			String requestBody, int statusCode) {
+			Object requestBody, int statusCode) {
 		try {
 			return putWithPathParametersAndHeaders(USER_SERVICE, pathParameters, headers, requestBody).then()
 					.statusCode(statusCode).and().extract().as(UpdatedUserData.class);
