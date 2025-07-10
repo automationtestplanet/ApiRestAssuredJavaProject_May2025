@@ -30,12 +30,29 @@ public class UserService extends ApiRequests {
 	public SingleUserData getSingleUserDetails(Map<String, String> pathParameters, int expectedStatusCode) {
 
 		try {
-			LinkedHashMap<String, String> responseString = getWithPathParams(USER_SERVICE, pathParameters).then()
-					.statusCode(expectedStatusCode).and().extract().jsonPath().getJsonObject("data");
 			
 			ObjectMapper objMap = new ObjectMapper();
-			String str = objMap.writeValueAsString(responseString);
-			return objMap.readValue(objMap.writeValueAsString(responseString), SingleUserData.class);
+			
+//			String responseString = getWithPathParams(USER_SERVICE, pathParameters).then()
+//			.statusCode(expectedStatusCode).and().extract().jsonPath().get("data").toString();
+//			return objMap.readValue(responseString, SingleUserData.class);
+			
+			
+			LinkedHashMap<String, String> responseObject = getWithPathParams(USER_SERVICE, pathParameters).then()
+					.statusCode(expectedStatusCode).and().extract().jsonPath().getJsonObject("data");
+			
+			String responseString = objMap.writeValueAsString(responseObject);
+			System.out.println(responseString);
+			
+			
+			return objMap.readValue(responseString, SingleUserData.class);
+			
+//			LinkedHashMap<String, String> responseString = getWithPathParams(USER_SERVICE, pathParameters).then()
+//					.statusCode(expectedStatusCode).and().extract().jsonPath().getJsonObject("data");
+//			
+//			ObjectMapper objMap = new ObjectMapper();
+//			String str = objMap.writeValueAsString(responseString);
+//			return objMap.readValue(objMap.writeValueAsString(responseString), SingleUserData.class);
 			
 		} catch (Exception e) {
 			System.out.println("Exception occured while getting Single user: " + e.getMessage());

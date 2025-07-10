@@ -30,6 +30,7 @@ public class UserServiceTest extends BaseTest {
 		pathParam.put("id", "2");
 		SingleUserData singleUserData = userService.getSingleUserDetails(pathParam, 200);
 		Assert.assertTrue(singleUserData.getId() == Integer.parseInt(pathParam.get("id")));
+		Assert.assertNotNull(singleUserData.getEmail());
 	}
 
 	@Test
@@ -88,7 +89,7 @@ public class UserServiceTest extends BaseTest {
 		headers.put("x-api-key", "reqres-free-v1");
 		String responseStr = userService.deleteUser(pathParam, headers, 204);
 
-		Assert.assertNull(responseStr);
+		Assert.assertTrue(responseStr.equals(""));
 	}
 
 }
