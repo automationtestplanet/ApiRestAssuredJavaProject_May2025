@@ -14,6 +14,10 @@ public class ApiRequests {
         return RestAssured.given().queryParams(queryParams).when().get(endPoint).then().extract().response();
     }
 
+    public Response getWithHeadersAndQueryParams(String endPoint, Map<String, String> headers, Map<String, String> queryParams) {
+        return RestAssured.given().queryParams(queryParams).headers(headers).when().get(endPoint).then().extract().response();
+    }
+
     public Response getWithPathParams(String endPoint, Map<String, String> pathParams) {
         String pathParameter = "";
         for (String pathParam : pathParams.keySet()) {
@@ -27,7 +31,6 @@ public class ApiRequests {
     public Response postWithHeaders(String endPoint, Map<String, String> headers, Object requestBody) {
         return RestAssured.given().headers(headers).contentType(ContentType.JSON).body(requestBody).when()
                 .post(endPoint).then().extract().response();
-
     }
 
     public Response putWithPathParametersAndHeaders(String endPoint, Map<String, String> pathParams,
