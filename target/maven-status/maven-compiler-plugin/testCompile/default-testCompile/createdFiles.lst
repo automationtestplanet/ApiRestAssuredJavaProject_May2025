@@ -1,0 +1,8 @@
+step\definitions\BaseStepDefinition.class
+step\definitions\UserServiceStepDefs.class
+runners\TestRunner.class
+services\tests\UserServiceTest.class
+in\reqres\BaseTest.class
+in\reqres\ReqResUserServiceTestCases.class
+in\reqres\UserServiceTest.class
+services\tests\RestfulBrokerServiceTest.class

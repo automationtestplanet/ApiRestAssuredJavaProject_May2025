@@ -1,0 +1,12 @@
+models\BookingDates.class
+models\NewUserDetails.class
+services\UserService.class
+api\ApiRequests.class
+services\RestfulBrokerService.class
+models\PartialUpdateUserData.class
+data\DataUtils.class
+models\UpdateBookingDetails$UpdateBookingDetailsBuilder.class
+models\UpdateBookingDetails.class
+models\UpdatedUserData.class
+models\NewUserData.class
+models\SingleUserData.class

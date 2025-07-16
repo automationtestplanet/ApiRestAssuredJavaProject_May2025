@@ -18,7 +18,10 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>3.3.1</version>
 				<configuration>
-					<includes>filestest.ReadDataFromExcelTestCases</includes>
+					<suiteXmlFiles>
+						<suiteXmlFile>TestRunner_testng.xml</suiteXmlFile>
+					</suiteXmlFiles>
+<!--					<includes>filestest.ReadDataFromExcelTestCases</includes>-->
 
 					<argLine>--add-opens java.base/java.lang=ALL-UNNAMED
 						--add-opens java.base/java.util=ALL-UNNAMED</argLine>
